@@ -1,0 +1,131 @@
+
+
+<table class="table" cellspacing="0" cellpadding="0">
+    <table class="table">
+        <tr>
+            <td>
+                <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+<span id="status"></span>
+<h1 id="finalMessage"></h1>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>
+                            Favoriten
+                        </th>
+                    </tr>
+                    
+                    <tr>
+                        <td>Total Voltage </td>
+                        <td>{{total_voltage}}</td>
+                    </tr>
+                    <tr>
+                        <td>Number of Cells </td>
+                        <td>{{number_of_cells}}</td>
+                    </tr>
+                    <tr>
+                        <td>Energy In </td>
+                        <td>{{energy_in}}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Current </td>
+                        <td>{{total_current}}</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>
+                            Parameter
+                        </th>
+                    </tr>
+                    
+                    <tr>
+                        <td>BMS Status </td>
+                        <td>
+                            <a href='index.html#/values'>
+                                <button id="myButton" ng-click='showValues(bms_status)'><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Current und Voltage </td>
+                        <td>
+                            <a href='index.html#/values'>
+                                <button onclick="showValues(currentAndVoltage)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                            </a>
+                        </td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>Battery Temperature Zusammenfassung </td>
+                    
+                    <td>
+                        <a href='index.html#/values'>
+                            <button onclick="showValues(batteryTempSummary); goToValues()"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                        </a>
+                    </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Total Energy </td>
+                        <td>
+                            <a href='index.html#/values'>
+                                <button onclick="showValues(totalEnergy)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                            </a>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Total Current </td>
+                        <td>
+                            <a href='index.html#/values'>
+                                <button onclick="showValues(totalCurrent)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                            </a> 
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Battery Voltage Zusammenfassung </td>
+                        <td>
+                            <a href='index.html#/values'>
+                                <button onclick="showValues(batteryVoltageSummary)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                            </a>
+                        </td>
+                    </tr>
+                    
+                    
+                </table>
+            </td>
+        </tr>
+            
+    </table>
+</table>
+            
+<script>
+function progressBarSim(al) {
+  var bar = document.getElementById('progressBar');
+  var status = document.getElementById('status');
+  status.innerHTML = al+"%";
+  bar.value = al;
+  al++;
+	var sim = setTimeout("progressBarSim("+al+")",300);
+	if(al == 100){
+	  status.innerHTML = "100%";
+	  bar.value = 100;
+	  clearTimeout(sim);
+	  var finalMessage = document.getElementById('finalMessage');
+	  finalMessage.innerHTML = "Process is complete";
+	}
+}
+var amountLoaded = 0;
+progressBarSim(amountLoaded);
+</script>
+
+
